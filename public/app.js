@@ -1,5 +1,5 @@
 const STORAGE_KEY = "necom-email-signature-lab-v8";
-const INTRO_STORAGE_KEY = "necom-email-signature-lab-intro-v1";
+const INTRO_STORAGE_KEY = "necom-email-signature-lab-tour-v2";
 const MINIMAL_COLOR = "#d8dada";
 
 const BRAND_PRESETS = [
@@ -522,56 +522,110 @@ const TRANSLATIONS = {
 const INTRO_STEPS = {
   en: [
     {
-      title: "Pick the right brand.",
-      body: "Start by choosing NECom or an event preset. The logo, website, accent color and default info text update together.",
-      bullets: ["Use + for a custom signature.", "Minimal logos are the safest default."],
+      title: "Choose the brand.",
+      body: "Start here. Pick NECom or an event preset. This updates the logo, accent color, website and default info text in one click.",
+      bullets: ["Use + when you need a custom brand.", "Presets use the minimal logo by default."],
+      target: "#presetGrid",
+      placement: "right",
     },
     {
-      title: "Add the person details.",
-      body: "Fill in the name, role, phone, email and website text. The signature updates live while you type.",
-      bullets: ["Turn the email address on only when needed.", "Click text in the preview for small direct edits."],
+      title: "Add the person.",
+      body: "Fill in the name, title, phone and email. The preview updates while you type, so this is the main place most people should work.",
+      bullets: ["Show the email address only when needed.", "Long names and emails should be checked in Mobile preview."],
+      target: ".editor-tab-panel[data-tab-panel='content'] .editor-card",
+      tab: "content",
+      placement: "right",
     },
     {
-      title: "Tune style and layout.",
-      body: "Use the Style, Media and Layout tabs to control color, logo size, signature width, rows, banner and contact layout.",
-      bullets: ["Stacked contact rows are best for mobile Gmail.", "One-line contact rows are compact for shorter threads."],
+      title: "Open Style.",
+      body: "Press Style to adjust the signature look: border position, signature width, text color and website link color.",
+      bullets: ["Left border and Top border are the only signature styles.", "Link color changes only the website link."],
+      target: ".editor-tab[data-tab-target='style']",
+      placement: "bottom",
     },
     {
-      title: "Preview like a real inbox.",
-      body: "The right side shows a Gmail-like message. Switch between Desktop and Mobile, then hit New email for a different test message.",
-      bullets: ["Check wrapping before copying.", "Preview with the longest name or email if unsure."],
+      title: "Pick safe colors.",
+      body: "Use the prepared brand colors first. Open the custom picker only when you really need a non-brand color.",
+      bullets: ["Accent color controls borders and main visual details.", "Website link color is separate for contrast."],
+      target: "#accentPalette",
+      tab: "style",
+      placement: "right",
     },
     {
-      title: "Copy into Gmail.",
-      body: "When it looks right, use Copy for Gmail and paste it into Gmail signature settings. Copy HTML is there for debugging or technical use.",
-      bullets: ["Use Copy for Gmail for normal team use.", "Send yourself a test email after adding it."],
+      title: "Set mobile layout.",
+      body: "In Layout, choose which rows are visible and how contact details should behave. Stacked rows are safest for mobile Gmail.",
+      bullets: ["Use One line for compact desktop signatures.", "Use Stacked rows for long emails and mobile safety."],
+      target: "#contactLayoutButton",
+      tab: "layout",
+      placement: "right",
+    },
+    {
+      title: "Check the preview.",
+      body: "Use Desktop and Mobile to test the signature before copying. Press New email to test it with different real-looking email lengths.",
+      bullets: ["Mobile preview is where long contact lines usually fail.", "New email helps catch awkward spacing faster."],
+      target: ".gmail-actions",
+      placement: "left",
+    },
+    {
+      title: "Copy for Gmail.",
+      body: "When everything looks good, press Copy for Gmail. Paste that into Gmail signature settings. Copy HTML is only for debugging.",
+      bullets: ["Always send yourself one test email.", "Use Copy for Gmail for normal team use."],
+      target: ".copy-tray",
+      placement: "top",
     },
   ],
   lv: [
     {
       title: "Izvēlies zīmolu.",
-      body: "Sāc ar NECom vai pasākuma izvēli. Logo, mājaslapa, akcenta krāsa un info teksts nomainās kopā.",
-      bullets: ["+ ir pielāgotam parakstam.", "Minimālie logo ir drošākā noklusējuma izvēle."],
+      body: "Sāc šeit. Izvēlies NECom vai pasākuma sagatavi. Logo, akcenta krāsa, mājaslapa un info teksts nomainās ar vienu klikšķi.",
+      bullets: ["+ izmanto pielāgotam zīmolam.", "Sagatavēs noklusēti tiek lietots minimālais logo."],
+      target: "#presetGrid",
+      placement: "right",
     },
     {
-      title: "Ievadi personas datus.",
-      body: "Aizpildi vārdu, amatu, telefonu, e-pastu un mājaslapas tekstu. Paraksts atjaunojas uzreiz rakstīšanas laikā.",
-      bullets: ["E-pasta adresi ieslēdz tikai tad, ja tā vajadzīga.", "Nelielas teksta izmaiņas vari veikt arī priekšskatījumā."],
+      title: "Pievieno personu.",
+      body: "Ievadi vārdu, amatu, telefonu un e-pastu. Priekšskatījums atjaunojas rakstīšanas laikā, tāpēc lielākā daļa darba notiek šeit.",
+      bullets: ["E-pasta adresi rādi tikai tad, ja vajadzīgs.", "Garus vārdus un e-pastus pārbaudi mobilajā skatā."],
+      target: ".editor-tab-panel[data-tab-panel='content'] .editor-card",
+      tab: "content",
+      placement: "right",
     },
     {
-      title: "Pielāgo stilu un rindas.",
-      body: "Style, Media un Layout sadaļās vari mainīt krāsas, logo izmēru, platumu, rindas, baneri un kontaktu izkārtojumu.",
-      bullets: ["Kontakti rindās vislabāk strādā mobilajā Gmail.", "Viena rinda ir kompakta īsākām sarakstēm."],
+      title: "Atver Stilu.",
+      body: "Spied Stils, lai pielāgotu paraksta izskatu: malas līniju, platumu, teksta krāsu un mājaslapas saites krāsu.",
+      bullets: ["Pieejami tikai Kreisā mala un Augšējā mala.", "Saites krāsa maina tikai mājaslapas saiti."],
+      target: ".editor-tab[data-tab-target='style']",
+      placement: "bottom",
     },
     {
-      title: "Pārbaudi kā inboxā.",
-      body: "Labajā pusē ir Gmail līdzīgs priekšskatījums. Pārslēdz Desktop/Mobile un spied Jauns epasts citam testa tekstam.",
-      bullets: ["Pārbaudi teksta laušanos pirms kopēšanas.", "Testē ar garāko vārdu vai e-pastu, ja šaubies."],
+      title: "Izvēlies drošas krāsas.",
+      body: "Vispirms izmanto sagatavotās zīmola krāsas. Pielāgoto krāsu atver tikai tad, ja tiešām vajag ārpus zīmola krāsu.",
+      bullets: ["Akcenta krāsa kontrolē līnijas un galvenās detaļas.", "Mājaslapas saites krāsa ir atsevišķi kontrastam."],
+      target: "#accentPalette",
+      tab: "style",
+      placement: "right",
     },
     {
-      title: "Kopē uz Gmail.",
-      body: "Kad viss izskatās pareizi, spied Kopēt Gmail un ielīmē Gmail paraksta iestatījumos. Kopēt HTML ir tehniskai pārbaudei.",
-      bullets: ["Ikdienā lieto Kopēt Gmail.", "Pēc pievienošanas nosūti sev testa e-pastu."],
+      title: "Sakārto mobilo izkārtojumu.",
+      body: "Sadaļā Rindas izvēlies, kas parakstā redzams un kā uzvedas kontakti. Rindās ir drošākā izvēle Gmail telefonā.",
+      bullets: ["Vienā rindā der kompaktam desktop parakstam.", "Rindās der gariem e-pastiem un mobilajai drošībai."],
+      target: "#contactLayoutButton",
+      tab: "layout",
+      placement: "right",
+    },
+    {
+      title: "Pārbaudi priekšskatījumu.",
+      body: "Izmanto Dators un Mobilais, lai pārbaudītu parakstu pirms kopēšanas. Spied Jauns epasts, lai testētu dažādus teksta garumus.",
+      bullets: ["Mobilajā skatā visbiežāk redz kontaktu rindas problēmas.", "Jauns epasts palīdz ātrāk pamanīt neveiklu atstarpi."],
+      target: ".gmail-actions",
+      placement: "left",
+    },
+    {
+      title: "Kopē Gmail.",
+      body: "Kad viss izskatās pareizi, spied Kopēt Gmail un ielīmē Gmail paraksta iestatījumos. Kopēt HTML ir vairāk tehniskai pārbaudei.",
+      bullets: ["Vienmēr nosūti sev testa e-pastu.", "Ikdienai izmanto Kopēt Gmail."],
+      target: ".copy-tray",
+      placement: "top",
     },
   ],
 };
@@ -717,6 +771,12 @@ function bindElements() {
     "closeColorPopover",
     "introOpenButton",
     "introOverlay",
+    "introCard",
+    "introSpotlight",
+    "introMaskTop",
+    "introMaskRight",
+    "introMaskBottom",
+    "introMaskLeft",
     "introCloseButton",
     "introKicker",
     "introTitle",
@@ -858,7 +918,9 @@ function bindEvents() {
       state.activeEmailIndex = 0;
       state.infoText = getCurrentBrandInfoText(state.infoVariant);
       saveAndRender();
-      renderIntroStep();
+      if (elements.introOverlay && !elements.introOverlay.hidden) {
+        renderIntroStep();
+      }
     });
   });
 
@@ -966,18 +1028,20 @@ function bindEvents() {
       completeIntro();
     }
   });
+
+  window.addEventListener("resize", handleIntroViewportChange);
+  window.addEventListener("scroll", handleIntroViewportChange, true);
 }
 
 function initIntro() {
-  renderIntroStep();
-
   if (!localStorage.getItem(INTRO_STORAGE_KEY)) {
-    window.setTimeout(() => showIntro(0), 450);
+    window.setTimeout(() => showIntro(0), 550);
   }
 }
 
 function showIntro(step = 0) {
   if (!elements.introOverlay) return;
+
   introStepIndex = clamp(step, 0, currentIntroSteps().length - 1);
   elements.introOverlay.hidden = false;
   document.body.classList.add("has-intro-open");
@@ -987,9 +1051,11 @@ function showIntro(step = 0) {
 
 function completeIntro() {
   if (!elements.introOverlay) return;
+
   elements.introOverlay.hidden = true;
   document.body.classList.remove("has-intro-open");
   localStorage.setItem(INTRO_STORAGE_KEY, "seen");
+  clearIntroHighlight();
 }
 
 function nextIntroStep() {
@@ -1016,6 +1082,8 @@ function renderIntroStep() {
   const step = steps[introStepIndex] || steps[0];
   const current = introStepIndex + 1;
 
+  prepareIntroTarget(step);
+
   elements.introKicker.textContent = `${current} / ${steps.length}`;
   elements.introTitle.textContent = step.title;
   elements.introBody.textContent = step.body;
@@ -1028,11 +1096,220 @@ function renderIntroStep() {
 
   elements.introBackButton.disabled = introStepIndex === 0;
   elements.introNextButton.textContent = introStepIndex === steps.length - 1 ? t("introDone") : t("introNext");
+
+  window.setTimeout(() => positionIntroHighlight(), 70);
 }
 
 function currentIntroSteps() {
   return INTRO_STEPS[state.language] || INTRO_STEPS.en;
 }
+
+function prepareIntroTarget(step) {
+  if (step.tab) {
+    activateTab(step.tab);
+  }
+
+  if (step.viewport && elements.emailViewport) {
+    state.previewViewport = step.viewport;
+    saveAndRender();
+  }
+
+  const target = findIntroTarget(step);
+
+  if (target) {
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "center",
+    });
+  }
+}
+
+function findIntroTarget(step = currentIntroSteps()[introStepIndex]) {
+  if (!step?.target) return null;
+  return document.querySelector(step.target);
+}
+
+function positionIntroHighlight() {
+  if (!elements.introOverlay || elements.introOverlay.hidden) return;
+
+  const step = currentIntroSteps()[introStepIndex] || {};
+  const target = findIntroTarget(step);
+
+  if (!target || !elements.introCard || !elements.introSpotlight) {
+    clearIntroHighlight();
+    centerIntroCard();
+    return;
+  }
+
+  const rect = target.getBoundingClientRect();
+  const padding = window.innerWidth <= 640 ? 8 : 10;
+  const top = clamp(rect.top - padding, 8, window.innerHeight - 24);
+  const left = clamp(rect.left - padding, 8, window.innerWidth - 24);
+  const right = clamp(rect.right + padding, 24, window.innerWidth - 8);
+  const bottom = clamp(rect.bottom + padding, 24, window.innerHeight - 8);
+  const width = Math.max(24, right - left);
+  const height = Math.max(24, bottom - top);
+
+  setRect(elements.introSpotlight, { top, left, width, height });
+  setIntroMasks({ top, left, right, bottom });
+
+  positionIntroCard({ top, left, right, bottom, width, height }, step.placement);
+}
+
+function setIntroMasks(rect) {
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  setRect(elements.introMaskTop, {
+    top: 0,
+    left: 0,
+    width: viewportWidth,
+    height: Math.max(0, rect.top),
+  });
+  setRect(elements.introMaskBottom, {
+    top: rect.bottom,
+    left: 0,
+    width: viewportWidth,
+    height: Math.max(0, viewportHeight - rect.bottom),
+  });
+  setRect(elements.introMaskLeft, {
+    top: rect.top,
+    left: 0,
+    width: Math.max(0, rect.left),
+    height: Math.max(0, rect.bottom - rect.top),
+  });
+  setRect(elements.introMaskRight, {
+    top: rect.top,
+    left: rect.right,
+    width: Math.max(0, viewportWidth - rect.right),
+    height: Math.max(0, rect.bottom - rect.top),
+  });
+}
+
+function setRect(element, rect) {
+  if (!element) return;
+
+  element.style.top = `${Math.round(rect.top)}px`;
+  element.style.left = `${Math.round(rect.left)}px`;
+  element.style.width = `${Math.round(rect.width)}px`;
+  element.style.height = `${Math.round(rect.height)}px`;
+}
+
+function positionIntroCard(targetRect, preferredPlacement = "right") {
+  const card = elements.introCard;
+  if (!card) return;
+
+  const margin = 16;
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  card.style.transform = "";
+
+  card.style.position = "fixed";
+
+  if (viewportWidth <= 700) {
+    card.style.top = "auto";
+    card.style.right = "0.75rem";
+    card.style.bottom = "0.75rem";
+    card.style.left = "0.75rem";
+    card.style.width = "auto";
+    card.style.maxWidth = "none";
+    return;
+  }
+
+  const cardRect = card.getBoundingClientRect();
+  const cardWidth = Math.min(cardRect.width || 380, 400);
+  const cardHeight = Math.min(cardRect.height || 360, viewportHeight - margin * 2);
+
+  const placements = [
+    preferredPlacement,
+    "right",
+    "left",
+    "bottom",
+    "top",
+  ].filter((item, index, array) => item && array.indexOf(item) === index);
+
+  let chosen = null;
+
+  for (const placement of placements) {
+    const candidate = getIntroCardPosition(placement, targetRect, cardWidth, cardHeight, margin);
+    if (
+      candidate.left >= margin &&
+      candidate.top >= margin &&
+      candidate.left + cardWidth <= viewportWidth - margin &&
+      candidate.top + cardHeight <= viewportHeight - margin
+    ) {
+      chosen = candidate;
+      break;
+    }
+  }
+
+  if (!chosen) {
+    chosen = {
+      left: clamp(targetRect.left, margin, viewportWidth - cardWidth - margin),
+      top: clamp(targetRect.bottom + margin, margin, viewportHeight - cardHeight - margin),
+    };
+  }
+
+  card.style.width = `${cardWidth}px`;
+  card.style.maxWidth = `${cardWidth}px`;
+  card.style.left = `${Math.round(chosen.left)}px`;
+  card.style.top = `${Math.round(chosen.top)}px`;
+  card.style.right = "auto";
+  card.style.bottom = "auto";
+}
+
+function getIntroCardPosition(placement, targetRect, cardWidth, cardHeight, margin) {
+  const verticalCenter = targetRect.top + targetRect.height / 2 - cardHeight / 2;
+  const horizontalCenter = targetRect.left + targetRect.width / 2 - cardWidth / 2;
+
+  if (placement === "left") {
+    return { left: targetRect.left - cardWidth - margin, top: verticalCenter };
+  }
+
+  if (placement === "right") {
+    return { left: targetRect.right + margin, top: verticalCenter };
+  }
+
+  if (placement === "top") {
+    return { left: horizontalCenter, top: targetRect.top - cardHeight - margin };
+  }
+
+  return { left: horizontalCenter, top: targetRect.bottom + margin };
+}
+
+function centerIntroCard() {
+  const card = elements.introCard;
+  if (!card) return;
+
+  card.style.position = "fixed";
+  card.style.left = "50%";
+  card.style.top = "50%";
+  card.style.right = "auto";
+  card.style.bottom = "auto";
+  card.style.width = "min(400px, calc(100vw - 2rem))";
+  card.style.maxWidth = "400px";
+  card.style.transform = "translate(-50%, -50%)";
+}
+
+function clearIntroHighlight() {
+  [elements.introSpotlight, elements.introMaskTop, elements.introMaskRight, elements.introMaskBottom, elements.introMaskLeft].forEach((element) => {
+    if (!element) return;
+    element.removeAttribute("style");
+  });
+
+  if (elements.introCard) {
+    elements.introCard.style.transform = "";
+  }
+}
+
+function handleIntroViewportChange() {
+  if (elements.introOverlay && !elements.introOverlay.hidden) {
+    positionIntroHighlight();
+  }
+}
+
 
 
 function bindInput(input, key) {

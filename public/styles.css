@@ -1229,3 +1229,240 @@ input[type="range"] {
 .custom-select.info-variant-select {
   margin-top: 0.72rem;
 }
+
+
+/* Guided product tour */
+body.has-intro-open {
+  overflow: auto;
+}
+
+.intro-overlay {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  display: block;
+  padding: 0;
+  pointer-events: none;
+}
+
+.intro-overlay[hidden] {
+  display: none;
+}
+
+.intro-mask {
+  position: fixed;
+  z-index: 121;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(216, 218, 218, 0.06), transparent 26rem),
+    rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(7px);
+  pointer-events: auto;
+}
+
+.intro-spotlight {
+  position: fixed;
+  z-index: 122;
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 1rem;
+  box-shadow:
+    0 0 0 1px rgba(181, 154, 113, 0.74),
+    0 0 42px rgba(181, 154, 113, 0.46),
+    0 0 90px rgba(216, 218, 218, 0.2);
+  pointer-events: none;
+  transition:
+    top 180ms ease,
+    left 180ms ease,
+    width 180ms ease,
+    height 180ms ease;
+}
+
+.intro-card {
+  position: fixed;
+  z-index: 123;
+  display: block;
+  width: min(400px, calc(100vw - 2rem));
+  max-width: 400px;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 247, 243, 0.96)),
+    #ffffff;
+  color: #111111;
+  padding: 1.1rem;
+  box-shadow:
+    0 28px 95px rgba(0, 0, 0, 0.58),
+    0 0 0 1px rgba(255, 255, 255, 0.62) inset;
+  pointer-events: auto;
+}
+
+.intro-card::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(181, 154, 113, 0.34), transparent 13rem),
+    radial-gradient(circle at 92% 4%, rgba(216, 218, 218, 0.34), transparent 11rem);
+  content: "";
+}
+
+.intro-close-button {
+  position: absolute;
+  top: 0.72rem;
+  right: 0.72rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  color: #111111;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.intro-kicker {
+  margin: 0 2.4rem 0.62rem 0;
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.intro-card h2 {
+  margin: 0;
+  max-width: 15ch;
+  color: #111111;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  font-style: italic;
+  line-height: 1.02;
+}
+
+.intro-card p:not(.intro-kicker) {
+  margin: 0.78rem 0 0;
+  color: #3f3f3f;
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.intro-checklist {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.intro-checklist li {
+  display: flex;
+  gap: 0.48rem;
+  align-items: flex-start;
+  color: #292929;
+  font-size: 0.84rem;
+  line-height: 1.36;
+}
+
+.intro-checklist li::before {
+  content: "Press";
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+  padding: 0.12rem 0.38rem;
+  font-size: 0.62rem;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+html[lang="lv"] .intro-checklist li::before {
+  content: "Spied";
+}
+
+.intro-dots {
+  display: flex;
+  gap: 0.34rem;
+  margin: 1rem 0 0;
+}
+
+.intro-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.18);
+}
+
+.intro-dot.is-active {
+  width: 1.5rem;
+  background: var(--accent);
+}
+
+.intro-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.intro-step-actions {
+  display: inline-flex;
+  gap: 0.45rem;
+}
+
+.intro-link-button,
+.intro-secondary-button,
+.intro-primary-button {
+  min-height: 2.42rem;
+  border-radius: 999px;
+  padding: 0.58rem 0.92rem;
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.intro-link-button {
+  border: 0;
+  background: transparent;
+  color: #5f6368;
+  padding-inline: 0;
+}
+
+.intro-secondary-button {
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: #111111;
+}
+
+.intro-secondary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.intro-primary-button {
+  border: 1px solid #111111;
+  background: #111111;
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 700px) {
+  .intro-card {
+    width: auto;
+    max-width: none;
+    border-radius: 1.1rem;
+  }
+
+  .intro-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .intro-step-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

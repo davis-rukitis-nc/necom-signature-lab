@@ -36,6 +36,7 @@ README.md
 
 ## Features
 
+- v9 onboarding: guided product tour that highlights the real buttons, tabs, preview controls and copy actions in EN/LV.
 - v8 onboarding: first-visit intro overlay with EN/LV guide, reusable help button, and a shadow/glow explainer card.
 - v7 UI polish: pill title, vertically centered editor on desktop, wider editor panel, responsive centered preview.
 - Contact layout switch: stacked T/E/W rows for mobile-safe signatures, or one-line compact contacts for desktop/thread use.
@@ -62,5 +63,7 @@ README.md
 - Table-based inline signature HTML for better Gmail/email-client safety.
 
 ## Notes
+
+The guided tour is shown once per browser and can be reopened with the ? button in the header.
 
 The generated signature avoids external CSS and JavaScript. It uses table layout, inline CSS, controlled image widths, a fluid max-width container, a fixed right logo cell, and an optional stacked contact layout to keep the signature readable in desktop Gmail, mobile Gmail, and common email clients.

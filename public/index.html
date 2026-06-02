@@ -361,50 +361,28 @@
       </div>
 
       <div class="intro-overlay" id="introOverlay" hidden>
-        <div class="intro-backdrop" data-intro-close></div>
-        <section class="intro-card" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introBody">
+        <div class="intro-mask intro-mask--top" id="introMaskTop" data-intro-close></div>
+        <div class="intro-mask intro-mask--right" id="introMaskRight" data-intro-close></div>
+        <div class="intro-mask intro-mask--bottom" id="introMaskBottom" data-intro-close></div>
+        <div class="intro-mask intro-mask--left" id="introMaskLeft" data-intro-close></div>
+        <div class="intro-spotlight" id="introSpotlight" aria-hidden="true"></div>
+
+        <section class="intro-card" id="introCard" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introBody">
           <button class="intro-close-button" id="introCloseButton" type="button" data-i18n-aria="closeIntro" aria-label="Close guide">
             ×
           </button>
 
-          <div class="intro-visual" aria-hidden="true">
-            <span class="intro-glow intro-glow--gold"></span>
-            <span class="intro-glow intro-glow--silver"></span>
-            <div class="intro-mini-window">
-              <div class="intro-mini-toolbar">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div class="intro-mini-grid">
-                <div class="intro-mini-sidebar">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <div class="intro-mini-email">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <strong></strong>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p class="intro-kicker" id="introKicker"></p>
+          <h2 id="introTitle"></h2>
+          <p id="introBody"></p>
+          <ul class="intro-checklist" id="introChecklist"></ul>
+          <div class="intro-dots" id="introDots" aria-hidden="true"></div>
 
-          <div class="intro-content">
-            <p class="intro-kicker" id="introKicker"></p>
-            <h2 id="introTitle"></h2>
-            <p id="introBody"></p>
-            <ul class="intro-checklist" id="introChecklist"></ul>
-            <div class="intro-dots" id="introDots" aria-hidden="true"></div>
-
-            <div class="intro-actions">
-              <button class="intro-link-button" id="introSkipButton" type="button" data-i18n="skipIntro">Skip guide</button>
-              <div class="intro-step-actions">
-                <button class="intro-secondary-button" id="introBackButton" type="button" data-i18n="introBack">Back</button>
-                <button class="intro-primary-button" id="introNextButton" type="button" data-i18n="introNext">Next</button>
-              </div>
+          <div class="intro-actions">
+            <button class="intro-link-button" id="introSkipButton" type="button" data-i18n="skipIntro">Skip guide</button>
+            <div class="intro-step-actions">
+              <button class="intro-secondary-button" id="introBackButton" type="button" data-i18n="introBack">Back</button>
+              <button class="intro-primary-button" id="introNextButton" type="button" data-i18n="introNext">Next</button>
             </div>
           </div>
         </section>
