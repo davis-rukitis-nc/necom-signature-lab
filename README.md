@@ -36,6 +36,7 @@ README.md
 
 ## Features
 
+- v10 onboarding: cleaner guided product tour copy, no confusing black “Press” badges, softer highlight card styling, and the same real-interface targeting in EN/LV.
 - v9 onboarding: guided product tour that highlights the real buttons, tabs, preview controls and copy actions in EN/LV.
 - v8 onboarding: first-visit intro overlay with EN/LV guide, reusable help button, and a shadow/glow explainer card.
 - v7 UI polish: pill title, vertically centered editor on desktop, wider editor panel, responsive centered preview.
