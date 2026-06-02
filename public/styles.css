@@ -89,7 +89,7 @@ textarea:focus-visible {
   display: inline-flex;
   align-items: center;
   min-width: 0;
-  gap: 0.78rem;
+  gap: 2rem;
   color: var(--minimal);
   text-decoration: none;
 }
