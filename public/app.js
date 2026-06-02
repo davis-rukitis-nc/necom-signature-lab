@@ -235,8 +235,7 @@ So I suggest we start the day culturally. Not necessarily with Bordeaux, althoug
 
 A small step for mankind. A giant leap for inbox civilization.
 
-Cheers,
-Aigars`,
+Cheers,`,
     },
     {
       email: "aigars@necom.lv",
@@ -246,8 +245,7 @@ today’s meeting was like a young Chablis — promising at first, a little shar
 
 Next time, let’s bring fewer slides, more thoughts and, in an ideal world, something edible. Strategy does not happen on an empty stomach. Irritation does.
 
-Life is beautiful,
-Aigars`,
+Life is beautiful,`,
     },
     {
       email: "aigars@necom.lv",
@@ -258,8 +256,7 @@ a reminder that lunch is not a sign of weakness. It is a form of civilization.
 A person who has not eaten between 12:00 and 15:00 cannot make strategic decisions. They can only move calendar invites around and look at colleagues with a sadness worthy of Burgundy.
 
 Go eat. The world can wait.
-
-Aigars`,
+`,
     },
     {
       email: "aigars@necom.lv",
@@ -271,23 +268,22 @@ But before we call it a crisis, please check three things: is there cheese, is t
 
 Let’s continue with dignity, calm and a small dose of theatrical confidence.
 
-Cheers,
-Aigars`,
+Cheers,`,
     },
     {
       email: "maveriks@necom.lv",
       subject: "vau?",
-      text: "vau. I honestly didn’t know what to write here. He never told me anything memorable enough to stay in my head.",
+      text: "Vau. I honestly didn’t know what to write here. He’s never told me anything memorable enough to stay in my head.",
     },
     {
       email: "tako@necom.lv",
       subject: "vau?",
-      text: "VAU. I honestly didn’t know what to write here either. He also never told me anything memorable enough to stay in my head. But he had an uppercase bark, because he is a more powerful barker than maveriks@necom.lv.",
+      text: "VAU. I honestly didn’t know what to write here either. He’s never told me anything memorable enough to stay in my head, either. But his bark is uppercase because he’s a more powerful barker than maveriks@necom.lv.",
     },
     {
       email: "valda@necom.lv",
       subject: "che palle!",
-      text: "va fanculo [insert pissed off italian gibberish] si si si si (haha sisi mentioned)",
+      text: "va fanculo!! si si si si (haha sisi mentioned)",
     },
   ],
   lv: [
@@ -301,8 +297,7 @@ Tāpēc ierosinu dienu sākt kulturāli. Ne obligāti ar bordo, lai gan ideju no
 
 Mazs solis cilvēcei. Liels solis inbox civilizācijai.
 
-Priekā,
-Aigars`,
+Priekā,`,
     },
     {
       email: "aigars@necom.lv",
@@ -312,8 +307,7 @@ Aigars`,
 
 Nākamreiz paņemam mazāk slaidu, vairāk domu un, ideālā pasaulē, arī kaut ko ēdamu. Tukšā dūšā stratēģija nerodas. Rodas tikai aizkaitinājums.
 
-Dzīve ir skaista,
-Aigars`,
+Dzīve ir skaista,`,
     },
     {
       email: "aigars@necom.lv",
@@ -324,8 +318,7 @@ atgādinu, ka pusdienas nav vājuma pazīme. Tā ir civilizācijas forma.
 Cilvēks, kurš starp 12:00 un 15:00 nav ēdis, nevar pieņemt stratēģiskus lēmumus. Viņš var tikai pārvietot kalendāra ielūgumus un skatīties uz kolēģiem ar burgundieša cienīgu skumju pilnu skatienu.
 
 Ejiet ēst. Pasaule pagaidīs.
-
-Aigars`,
+`,
     },
     {
       email: "aigars@necom.lv",
@@ -337,8 +330,7 @@ Bet pirms saucam to par krīzi, lūdzu, pārbaudām trīs lietas: vai ir siers, 
 
 Turpinām ar cieņu, mieru un nelielu devu teatrālas pašpārliecības.
 
-Priekā,
-Aigars`,
+Priekā,`,
     },
     {
       email: "maveriks@necom.lv",
@@ -353,7 +345,7 @@ Aigars`,
     {
       email: "valda@necom.lv",
       subject: "che palle!",
-      text: "va fanculo [insert pissed off italian gibberish] si si si si (haha sisi mentioned)",
+      text: "va fanculo!! si si si si (haha sisi mentioned)",
     },
   ],
 };
