@@ -1,4 +1,5 @@
-const STORAGE_KEY = "necom-email-signature-lab-v7";
+const STORAGE_KEY = "necom-email-signature-lab-v8";
+const INTRO_STORAGE_KEY = "necom-email-signature-lab-intro-v1";
 const MINIMAL_COLOR = "#d8dada";
 
 const BRAND_PRESETS = [
@@ -426,6 +427,12 @@ const TRANSLATIONS = {
     logoDarkStars: "Dark stars",
     logoLightStars: "Light stars",
     logoCustom: "Custom",
+    openIntro: "Open guide",
+    closeIntro: "Close guide",
+    skipIntro: "Skip guide",
+    introBack: "Back",
+    introNext: "Next",
+    introDone: "Start building",
   },
   lv: {
     reset: "Atiestatīt",
@@ -502,7 +509,71 @@ const TRANSLATIONS = {
     logoDarkStars: "Tumšas zvaigznes",
     logoLightStars: "Gaišas zvaigznes",
     logoCustom: "Pielāgots",
+    openIntro: "Atvērt pamācību",
+    closeIntro: "Aizvērt pamācību",
+    skipIntro: "Izlaist pamācību",
+    introBack: "Atpakaļ",
+    introNext: "Tālāk",
+    introDone: "Sākt veidot",
   },
+};
+
+
+const INTRO_STEPS = {
+  en: [
+    {
+      title: "Pick the right brand.",
+      body: "Start by choosing NECom or an event preset. The logo, website, accent color and default info text update together.",
+      bullets: ["Use + for a custom signature.", "Minimal logos are the safest default."],
+    },
+    {
+      title: "Add the person details.",
+      body: "Fill in the name, role, phone, email and website text. The signature updates live while you type.",
+      bullets: ["Turn the email address on only when needed.", "Click text in the preview for small direct edits."],
+    },
+    {
+      title: "Tune style and layout.",
+      body: "Use the Style, Media and Layout tabs to control color, logo size, signature width, rows, banner and contact layout.",
+      bullets: ["Stacked contact rows are best for mobile Gmail.", "One-line contact rows are compact for shorter threads."],
+    },
+    {
+      title: "Preview like a real inbox.",
+      body: "The right side shows a Gmail-like message. Switch between Desktop and Mobile, then hit New email for a different test message.",
+      bullets: ["Check wrapping before copying.", "Preview with the longest name or email if unsure."],
+    },
+    {
+      title: "Copy into Gmail.",
+      body: "When it looks right, use Copy for Gmail and paste it into Gmail signature settings. Copy HTML is there for debugging or technical use.",
+      bullets: ["Use Copy for Gmail for normal team use.", "Send yourself a test email after adding it."],
+    },
+  ],
+  lv: [
+    {
+      title: "Izvēlies zīmolu.",
+      body: "Sāc ar NECom vai pasākuma izvēli. Logo, mājaslapa, akcenta krāsa un info teksts nomainās kopā.",
+      bullets: ["+ ir pielāgotam parakstam.", "Minimālie logo ir drošākā noklusējuma izvēle."],
+    },
+    {
+      title: "Ievadi personas datus.",
+      body: "Aizpildi vārdu, amatu, telefonu, e-pastu un mājaslapas tekstu. Paraksts atjaunojas uzreiz rakstīšanas laikā.",
+      bullets: ["E-pasta adresi ieslēdz tikai tad, ja tā vajadzīga.", "Nelielas teksta izmaiņas vari veikt arī priekšskatījumā."],
+    },
+    {
+      title: "Pielāgo stilu un rindas.",
+      body: "Style, Media un Layout sadaļās vari mainīt krāsas, logo izmēru, platumu, rindas, baneri un kontaktu izkārtojumu.",
+      bullets: ["Kontakti rindās vislabāk strādā mobilajā Gmail.", "Viena rinda ir kompakta īsākām sarakstēm."],
+    },
+    {
+      title: "Pārbaudi kā inboxā.",
+      body: "Labajā pusē ir Gmail līdzīgs priekšskatījums. Pārslēdz Desktop/Mobile un spied Jauns epasts citam testa tekstam.",
+      bullets: ["Pārbaudi teksta laušanos pirms kopēšanas.", "Testē ar garāko vārdu vai e-pastu, ja šaubies."],
+    },
+    {
+      title: "Kopē uz Gmail.",
+      body: "Kad viss izskatās pareizi, spied Kopēt Gmail un ielīmē Gmail paraksta iestatījumos. Kopēt HTML ir tehniskai pārbaudei.",
+      bullets: ["Ikdienā lieto Kopēt Gmail.", "Pēc pievienošanas nosūti sev testa e-pastu."],
+    },
+  ],
 };
 
 const DEFAULT_STATE = {
@@ -568,6 +639,7 @@ const SELECT_DEFS = {
 const elements = {};
 let state = loadState();
 let activeCustomColorTarget = "accent";
+let introStepIndex = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
   bindElements();
@@ -576,6 +648,7 @@ document.addEventListener("DOMContentLoaded", () => {
   bindEvents();
   applyStateToControls();
   renderAll();
+  initIntro();
 });
 
 function bindElements() {
@@ -642,6 +715,17 @@ function bindElements() {
     "customBlueInput",
     "applyCustomColorButton",
     "closeColorPopover",
+    "introOpenButton",
+    "introOverlay",
+    "introCloseButton",
+    "introKicker",
+    "introTitle",
+    "introBody",
+    "introChecklist",
+    "introDots",
+    "introSkipButton",
+    "introBackButton",
+    "introNextButton",
   ];
 
   ids.forEach((id) => {
@@ -774,6 +858,7 @@ function bindEvents() {
       state.activeEmailIndex = 0;
       state.infoText = getCurrentBrandInfoText(state.infoVariant);
       saveAndRender();
+      renderIntroStep();
     });
   });
 
@@ -865,7 +950,90 @@ function bindEvents() {
   });
 
   elements.signaturePreview.addEventListener("blur", handleInlineEdit, true);
+
+  elements.introOpenButton?.addEventListener("click", () => showIntro(0));
+  elements.introCloseButton?.addEventListener("click", completeIntro);
+  elements.introSkipButton?.addEventListener("click", completeIntro);
+  elements.introBackButton?.addEventListener("click", previousIntroStep);
+  elements.introNextButton?.addEventListener("click", nextIntroStep);
+  elements.introOverlay?.addEventListener("click", (event) => {
+    if (event.target.matches("[data-intro-close]")) {
+      completeIntro();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && elements.introOverlay && !elements.introOverlay.hidden) {
+      completeIntro();
+    }
+  });
 }
+
+function initIntro() {
+  renderIntroStep();
+
+  if (!localStorage.getItem(INTRO_STORAGE_KEY)) {
+    window.setTimeout(() => showIntro(0), 450);
+  }
+}
+
+function showIntro(step = 0) {
+  if (!elements.introOverlay) return;
+  introStepIndex = clamp(step, 0, currentIntroSteps().length - 1);
+  elements.introOverlay.hidden = false;
+  document.body.classList.add("has-intro-open");
+  renderIntroStep();
+  elements.introNextButton?.focus();
+}
+
+function completeIntro() {
+  if (!elements.introOverlay) return;
+  elements.introOverlay.hidden = true;
+  document.body.classList.remove("has-intro-open");
+  localStorage.setItem(INTRO_STORAGE_KEY, "seen");
+}
+
+function nextIntroStep() {
+  const steps = currentIntroSteps();
+
+  if (introStepIndex >= steps.length - 1) {
+    completeIntro();
+    return;
+  }
+
+  introStepIndex += 1;
+  renderIntroStep();
+}
+
+function previousIntroStep() {
+  introStepIndex = clamp(introStepIndex - 1, 0, currentIntroSteps().length - 1);
+  renderIntroStep();
+}
+
+function renderIntroStep() {
+  if (!elements.introTitle || !elements.introBody) return;
+
+  const steps = currentIntroSteps();
+  const step = steps[introStepIndex] || steps[0];
+  const current = introStepIndex + 1;
+
+  elements.introKicker.textContent = `${current} / ${steps.length}`;
+  elements.introTitle.textContent = step.title;
+  elements.introBody.textContent = step.body;
+  elements.introChecklist.innerHTML = step.bullets
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join("");
+  elements.introDots.innerHTML = steps
+    .map((_, index) => `<span class="intro-dot ${index === introStepIndex ? "is-active" : ""}"></span>`)
+    .join("");
+
+  elements.introBackButton.disabled = introStepIndex === 0;
+  elements.introNextButton.textContent = introStepIndex === steps.length - 1 ? t("introDone") : t("introNext");
+}
+
+function currentIntroSteps() {
+  return INTRO_STEPS[state.language] || INTRO_STEPS.en;
+}
+
 
 function bindInput(input, key) {
   input.addEventListener("input", () => {

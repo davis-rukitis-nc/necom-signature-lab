@@ -36,6 +36,7 @@ README.md
 
 ## Features
 
+- v8 onboarding: first-visit intro overlay with EN/LV guide, reusable help button, and a shadow/glow explainer card.
 - v7 UI polish: pill title, vertically centered editor on desktop, wider editor panel, responsive centered preview.
 - Contact layout switch: stacked T/E/W rows for mobile-safe signatures, or one-line compact contacts for desktop/thread use.
 - Presets default to minimal logo variants where available.
