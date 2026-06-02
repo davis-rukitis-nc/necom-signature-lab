@@ -246,10 +246,18 @@
                 <span data-i18n="rowsTitle">Rows</span>
               </div>
 
-              <div class="row-preset-strip" aria-label="Layout presets">
-                <button type="button" class="mini-pill" data-row-preset="full" data-i18n="presetFull">Full</button>
-                <button type="button" class="mini-pill" data-row-preset="compact" data-i18n="presetCompact">Compact</button>
-                <button type="button" class="mini-pill" data-row-preset="minimal" data-i18n="presetMinimal">Minimal</button>
+              <div class="layout-stack">
+                <div class="custom-select" data-select="contactLayout">
+                  <span class="select-label" data-i18n="contactLayoutLabel">Contact layout</span>
+                  <button class="select-button" id="contactLayoutButton" type="button" aria-haspopup="listbox" aria-expanded="false"></button>
+                  <div class="select-menu" id="contactLayoutMenu" role="listbox"></div>
+                </div>
+
+                <div class="row-preset-strip" aria-label="Layout presets">
+                  <button type="button" class="mini-pill" data-row-preset="full" data-i18n="presetFull">Full</button>
+                  <button type="button" class="mini-pill" data-row-preset="compact" data-i18n="presetCompact">Compact</button>
+                  <button type="button" class="mini-pill" data-row-preset="minimal" data-i18n="presetMinimal">Minimal</button>
+                </div>
               </div>
 
               <div class="row-toggle-list">

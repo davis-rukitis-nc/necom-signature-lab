@@ -142,7 +142,7 @@ textarea:focus-visible {
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(420px, 480px) minmax(520px, 820px);
+  grid-template-columns: minmax(460px, 520px) minmax(520px, 820px);
   justify-content: center;
   gap: 1.25rem;
   align-items: center;
@@ -160,8 +160,8 @@ textarea:focus-visible {
 .builder-panel {
   justify-self: center;
   width: 100%;
-  max-width: 480px;
-  padding: 1rem;
+  max-width: 520px;
+  padding: 1.05rem;
 }
 
 .preview-panel {
@@ -522,6 +522,12 @@ input[type="range"] {
   border-color: #111111;
 }
 
+.layout-stack {
+  display: grid;
+  gap: 0.7rem;
+  margin-bottom: 0.72rem;
+}
+
 .row-toggle-list {
   display: grid;
   gap: 0.46rem;
@@ -796,6 +802,10 @@ input[type="range"] {
   .builder-panel,
   .preview-panel {
     width: min(100%, 640px);
+  }
+
+  .builder-panel {
+    max-width: 520px;
   }
 }
 

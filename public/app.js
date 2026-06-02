@@ -1,4 +1,4 @@
-const STORAGE_KEY = "necom-email-signature-lab-v6";
+const STORAGE_KEY = "necom-email-signature-lab-v7";
 const MINIMAL_COLOR = "#d8dada";
 
 const BRAND_PRESETS = [
@@ -391,6 +391,9 @@ const TRANSLATIONS = {
     accentColorLabel: "Accent color",
     textColorLabel: "Text color",
     linkColorLabel: "Website link color",
+    contactLayoutLabel: "Contact layout",
+    contactLayoutStacked: "Stacked rows · mobile safe",
+    contactLayoutInline: "One line · compact",
     bannerUrlLabel: "Banner image URL",
     bannerLinkLabel: "Banner link URL",
     bannerPositionLabel: "Banner position",
@@ -464,6 +467,9 @@ const TRANSLATIONS = {
     accentColorLabel: "Akcenta krāsa",
     textColorLabel: "Teksta krāsa",
     linkColorLabel: "Mājaslapas saites krāsa",
+    contactLayoutLabel: "Kontaktu izkārtojums",
+    contactLayoutStacked: "Rindās · droši telefonā",
+    contactLayoutInline: "Vienā rindā · kompakti",
     bannerUrlLabel: "Banera attēla URL",
     bannerLinkLabel: "Banera saite",
     bannerPositionLabel: "Banera pozīcija",
@@ -526,6 +532,7 @@ const DEFAULT_STATE = {
   logoUrl: BRAND_PRESETS[0].logoVariants.minimal,
   logoSize: 72,
   signatureStyle: "leftBorder",
+  contactLayout: "stacked",
   accentColor: BRAND_PRESETS[0].accentColor,
   textColor: "#111111",
   linkColor: BRAND_PRESETS[0].linkColor,
@@ -549,6 +556,10 @@ const SELECT_DEFS = {
   signatureStyle: [
     { value: "leftBorder", labelKey: "styleLeftBorder" },
     { value: "topBorder", labelKey: "styleTopBorder" },
+  ],
+  contactLayout: [
+    { value: "stacked", labelKey: "contactLayoutStacked" },
+    { value: "inline", labelKey: "contactLayoutInline" },
   ],
   bannerPosition: [
     { value: "top", labelKey: "bannerTop" },
@@ -598,6 +609,8 @@ function bindElements() {
     "logoSizeInput",
     "signatureStyleButton",
     "signatureStyleMenu",
+    "contactLayoutButton",
+    "contactLayoutMenu",
     "accentPalette",
     "accentColorValue",
     "textPalette",
@@ -667,6 +680,10 @@ function loadState() {
 
     if (merged.signatureStyle === "modern") {
       merged.signatureStyle = "topBorder";
+    }
+
+    if (!["stacked", "inline"].includes(merged.contactLayout)) {
+      merged.contactLayout = "stacked";
     }
 
     if (!merged.linkColor) {
@@ -1011,6 +1028,11 @@ function renderSelects() {
     saveAndRender();
   });
 
+  renderSelect("contactLayout", SELECT_DEFS.contactLayout, state.contactLayout, (value) => {
+    state.contactLayout = value;
+    saveAndRender();
+  });
+
   renderSelect("bannerPosition", SELECT_DEFS.bannerPosition, state.bannerPosition, (value) => {
     state.bannerPosition = value;
     saveAndRender();
@@ -1312,9 +1334,23 @@ function renderDetailRows({ editable, link, text }) {
     }
   }
 
-  const contactRows = [];
+  const contactHtml =
+    state.contactLayout === "inline"
+      ? renderInlineContact({ link, text })
+      : renderStackedContact({ link, text });
+
+  if (contactHtml) {
+    blocks.push(contactHtml);
+  }
+
+  return blocks.join("");
+}
+
+function renderStackedContact({ link, text }) {
+  const rows = [];
+
   if (state.rows.contact && state.phone.trim()) {
-    contactRows.push(`
+    rows.push(`
       <tr>
         <td width="18" valign="top" style="width:18px; padding:0 8px 2px 0; color:#5f6368; font-weight:700;">T</td>
         <td valign="top" style="padding:0 0 2px 0;">
@@ -1325,7 +1361,7 @@ function renderDetailRows({ editable, link, text }) {
   }
 
   if (state.rows.contact && state.showEmail && state.email.trim()) {
-    contactRows.push(`
+    rows.push(`
       <tr>
         <td width="18" valign="top" style="width:18px; padding:0 8px 2px 0; color:#5f6368; font-weight:700;">E</td>
         <td valign="top" style="padding:0 0 2px 0;">
@@ -1336,7 +1372,7 @@ function renderDetailRows({ editable, link, text }) {
   }
 
   if (state.rows.website && state.websiteUrl.trim() && state.websiteLabel.trim()) {
-    contactRows.push(`
+    rows.push(`
       <tr>
         <td width="18" valign="top" style="width:18px; padding:0 8px 0 0; color:#5f6368; font-weight:700;">W</td>
         <td valign="top" style="padding:0;">
@@ -1346,15 +1382,52 @@ function renderDetailRows({ editable, link, text }) {
     `);
   }
 
-  if (contactRows.length) {
-    blocks.push(`
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin-top:${blocks.length ? "4px" : "0"};">
-        ${contactRows.join("")}
-      </table>
+  if (!rows.length) return "";
+
+  return `
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin-top:4px;">
+      ${rows.join("")}
+    </table>
+  `;
+}
+
+function renderInlineContact({ link, text }) {
+  const items = [];
+
+  if (state.rows.contact && state.phone.trim()) {
+    items.push(`
+      <span style="display:inline-block; white-space:nowrap;">
+        <span style="color:#5f6368; font-weight:700;">T</span>&nbsp;
+        <a href="tel:${escapeAttribute(phoneHref(state.phone))}" style="color:${text}; text-decoration:none;">${escapeHtml(state.phone)}</a>
+      </span>
     `);
   }
 
-  return blocks.join("");
+  if (state.rows.contact && state.showEmail && state.email.trim()) {
+    items.push(`
+      <span style="display:inline-block;">
+        <span style="color:#5f6368; font-weight:700;">E</span>&nbsp;
+        <a href="mailto:${escapeAttribute(state.email.trim())}" style="color:${text}; text-decoration:none; word-break:break-word;">${escapeHtml(state.email.trim())}</a>
+      </span>
+    `);
+  }
+
+  if (state.rows.website && state.websiteUrl.trim() && state.websiteLabel.trim()) {
+    items.push(`
+      <span style="display:inline-block;">
+        <span style="color:#5f6368; font-weight:700;">W</span>&nbsp;
+        <a href="${escapeAttribute(normalizeUrl(state.websiteUrl))}" style="color:${link}; text-decoration:underline; word-break:break-word;">${escapeHtml(state.websiteLabel)}</a>
+      </span>
+    `);
+  }
+
+  if (!items.length) return "";
+
+  return `
+    <div style="margin-top:4px; color:${text};">
+      ${items.join(`<span style="color:#c0c0c0;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>`)}
+    </div>
+  `;
 }
 
 function maybeAddBanner(rows, position, width) {

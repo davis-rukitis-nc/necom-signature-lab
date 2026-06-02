@@ -36,9 +36,10 @@ README.md
 
 ## Features
 
-- v6 UI polish: pill title, vertically centered editor on desktop, wider editor panel, responsive centered preview.
-- Mobile-safe contact layout: phone, email, and website are stacked as T/E/W rows instead of one fragile wrapping line.
+- v7 UI polish: pill title, vertically centered editor on desktop, wider editor panel, responsive centered preview.
+- Contact layout switch: stacked T/E/W rows for mobile-safe signatures, or one-line compact contacts for desktop/thread use.
 - Presets default to minimal logo variants where available.
+- Wider editor panel and vertically centered desktop workspace.
 
 - Clean NECom header using the light logo and remote PNG favicon.
 - English default with Latvian language switch.
@@ -61,4 +62,4 @@ README.md
 
 ## Notes
 
-The generated signature avoids external CSS and JavaScript. It uses table layout, inline CSS, controlled image widths, and a fluid max-width container and fixed right logo cell to keep the logo right-aligned and vertically centered in both desktop and mobile previews.
+The generated signature avoids external CSS and JavaScript. It uses table layout, inline CSS, controlled image widths, a fluid max-width container, a fixed right logo cell, and an optional stacked contact layout to keep the signature readable in desktop Gmail, mobile Gmail, and common email clients.
