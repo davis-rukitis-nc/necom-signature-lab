@@ -1160,30 +1160,34 @@ function positionIntroHighlight() {
 function setIntroMasks(rect) {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
+  const seamOverlap = 2;
 
   setRect(elements.introMaskTop, {
     top: 0,
     left: 0,
     width: viewportWidth,
-    height: Math.max(0, rect.top),
+    height: Math.max(0, rect.top + seamOverlap),
   });
+
   setRect(elements.introMaskBottom, {
-    top: rect.bottom,
+    top: Math.max(0, rect.bottom - seamOverlap),
     left: 0,
     width: viewportWidth,
-    height: Math.max(0, viewportHeight - rect.bottom),
+    height: Math.max(0, viewportHeight - rect.bottom + seamOverlap),
   });
+
   setRect(elements.introMaskLeft, {
-    top: rect.top,
+    top: Math.max(0, rect.top - seamOverlap),
     left: 0,
-    width: Math.max(0, rect.left),
-    height: Math.max(0, rect.bottom - rect.top),
+    width: Math.max(0, rect.left + seamOverlap),
+    height: Math.max(0, rect.bottom - rect.top + seamOverlap * 2),
   });
+
   setRect(elements.introMaskRight, {
-    top: rect.top,
-    left: rect.right,
-    width: Math.max(0, viewportWidth - rect.right),
-    height: Math.max(0, rect.bottom - rect.top),
+    top: Math.max(0, rect.top - seamOverlap),
+    left: Math.max(0, rect.right - seamOverlap),
+    width: Math.max(0, viewportWidth - rect.right + seamOverlap),
+    height: Math.max(0, rect.bottom - rect.top + seamOverlap * 2),
   });
 }
 
