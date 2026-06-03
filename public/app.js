@@ -15,8 +15,8 @@ const BRAND_PRESETS = [
     cardBg: "#111111",
     cardLogoVariant: "minimal",
     logoVariants: {
-      black: "https://rimirigamarathon.com/wp-content/uploads/2026/02/necom.png",
-      minimal: "https://rimirigamarathon.com/wp-content/uploads/2026/02/necom-1.png",
+      black: "https://signature-lab.necom.workers.dev/necom-black-transp.png",
+      minimal: "/necom-1.png",
     },
     infoText: {
       en: {
@@ -41,8 +41,8 @@ const BRAND_PRESETS = [
     cardBg: "#cc2128",
     cardLogoVariant: "minimal",
     logoVariants: {
-      black: "https://rimirigamarathon.com/wp-content/uploads/2025/02/RRM-logo-black.png",
-      minimal: "https://rimirigamarathon.com/wp-content/uploads/2026/05/rrm-logo-2.png",
+      black: "https://signature-lab.necom.workers.dev/rrm-black-transp.png",
+      minimal: "https://signature-lab.necom.workers.dev/rrm-logo-2.png",
     },
     infoText: {
       en: {
@@ -67,9 +67,9 @@ const BRAND_PRESETS = [
     cardBg: "#fa4100",
     cardLogoVariant: "minimal",
     logoVariants: {
-      black: "https://rimirigamarathon.com/wp-content/uploads/2026/05/pnr-black.png",
-      minimal: "https://rimirigamarathon.com/wp-content/uploads/2026/05/pnr-light.png",
-      orange: "https://rimirigamarathon.com/wp-content/uploads/2026/05/pnr-orange.png",
+      black: "https://signature-lab.necom.workers.dev/pnr-black.png",
+      minimal: "https://signature-lab.necom.workers.dev/pnr-light.png",
+      orange: "https://signature-lab.necom.workers.dev/pnr-orange.png",
     },
     infoText: {
       en: {
@@ -94,8 +94,8 @@ const BRAND_PRESETS = [
     cardBg: "#e40521",
     cardLogoVariant: "minimal",
     logoVariants: {
-      black: "https://rimirigamarathon.com/wp-content/uploads/2026/05/rwch-logo.png",
-      minimal: "https://rimirigamarathon.com/wp-content/uploads/2026/05/rwch-logo-1.png",
+      black: "https://signature-lab.necom.workers.dev/rwch-logo.png",
+      minimal: "https://signature-lab.necom.workers.dev/rwch-logo-1.png",
     },
     infoText: {
       en: {
@@ -120,8 +120,8 @@ const BRAND_PRESETS = [
     cardBg: "#023047",
     cardLogoVariant: "minimal",
     logoVariants: {
-      black: "https://rimirigamarathon.com/wp-content/uploads/2026/05/rwf-logo.png",
-      minimal: "https://rimirigamarathon.com/wp-content/uploads/2026/05/rwf-logo-1.png",
+      black: "https://signature-lab.necom.workers.dev/rwf-logo.png",
+      minimal: "https://signature-lab.necom.workers.dev/rwf-logo-1.png",
     },
     infoText: {
       en: {
@@ -146,10 +146,10 @@ const BRAND_PRESETS = [
     cardBg: "#231F20",
     cardLogoVariant: "minimal",
     logoVariants: {
-      black: "https://rimirigamarathon.com/wp-content/uploads/2026/05/bwda-dark.png",
-      minimal: "https://rimirigamarathon.com/wp-content/uploads/2026/05/bwda-light.png",
-      darkStars: "https://rimirigamarathon.com/wp-content/uploads/2026/05/bwda-dark-stars.png",
-      lightStars: "https://rimirigamarathon.com/wp-content/uploads/2026/05/bwda-light-stars.png",
+      black: "https://signature-lab.necom.workers.dev/bwda-dark.png",
+      minimal: "https://signature-lab.necom.workers.dev/bwda-light.png",
+      darkStars: "https://signature-lab.necom.workers.dev/bwda-dark-stars.png",
+      lightStars: "https://signature-lab.necom.workers.dev/bwda-light-stars.png",
     },
     infoText: {
       en: {
@@ -174,7 +174,7 @@ const BRAND_PRESETS = [
     cardBg: "#f1f1f1",
     cardLogoVariant: "custom",
     logoVariants: {
-      custom: "https://rimirigamarathon.com/wp-content/uploads/2026/02/necom.png",
+      custom: "https://signature-lab.necom.workers.dev/necom-1.png",
     },
     infoText: {
       en: {
